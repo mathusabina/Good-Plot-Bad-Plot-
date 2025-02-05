@@ -1,0 +1,22 @@
+"0","
+library(ggplot2)
+"
+"2","Warnung: Paket ‘ggplot2’ wurde unter R Version 4.4.2 erstellt"
+"0","library(tidyr)"
+"2","Warnung: Paket ‘tidyr’ wurde unter R Version 4.4.2 erstellt"
+"0","library(dplyr)"
+"2","Warnung: Paket ‘dplyr’ wurde unter R Version 4.4.2 erstellt"
+"2","
+Attache Paket: ‘dplyr’
+
+"
+"2","Die folgenden Objekte sind maskiert von ‘package:stats’:
+
+    filter, lag
+
+"
+"2","Die folgenden Objekte sind maskiert von ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+"

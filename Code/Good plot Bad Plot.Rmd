@@ -1,0 +1,116 @@
+---
+title: "Good Plot"
+author: "Mathumitha Sivakumar"
+date: "HS24"
+output: html_document
+---
+
+# Good Plot: People killed by road accidents
+
+## Packages
+
+```{r}
+#Install Packages 
+install.packages("ggplot2") 
+install.packages("tidyr")    
+install.packages("dplyr")    
+
+#Loading Packages 
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+```
+
+## Dataset
+
+The dataset was choosen form the package "datasets". It describes road casualties in Great Britain between 1969-1984. 
+
+```{r}
+
+data("Seatbelts")
+
+# Overview 
+View(Seatbelts)
+?Seatbelts
+colnames(Seatbelts)
+nrow(Seatbelts)
+
+# The columns "drivers", "fornt" and "rear" describe the amount of people killed or seriously injured while sitting in these positions.
+# The amount of rows represent the monthly data from January 1969 to December 1984. 
+
+``` 
+## Data modifikation
+
+
+```{r}
+#Adding a column for Month and selecting the 
+
+deaths_all<- as.data.frame(Seatbelts)
+deaths_all$Year <- rep(1969:1984, each = 12)
+deaths_all$Month <- rep(1:12, times = 16)
+deaths_all$Date <- factor(paste(sprintf("%02d", deaths_all$Month), deaths_all$Year, sep = "-"),
+                                levels = unique(paste(sprintf("%02d", deaths_all$Month), deaths_all$Year, sep = "-")))
+deaths<- select(deaths_all,Date,drivers,front,rear)
+
+```
+
+## Change to long format
+
+```{r}
+
+deaths_long <- deaths %>%
+  pivot_longer(cols = c(drivers,front, rear), 
+               names_to = "seat_position", 
+               values_to = "deaths")
+
+```
+
+```{r}
+
+# Create the Raincloud Plot
+ggplot(deaths_long, aes(x = Date, y = deaths, fill = seat_position, color = seat_position)) +
+  # Violin plot for distribution
+  geom_violin(alpha = 0.4, position = position_dodge(0.8)) +
+  # Boxplot inside violin for summary statistics
+  geom_boxplot(width = 0.2, position = position_dodge(0.8), outlier.shape = NA) +
+  # Jittered points to show individual data points
+  geom_jitter(position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.8), alpha = 0.6) +
+  # Titles and labels
+  labs(title = "Raincloud Plot of Front vs Rear Seat Deaths Over Time",
+       x = "Date",
+       y = "Number of Deaths",
+       fill = "Seat Position",
+       color = "Seat Position") +
+  # Rotate x-axis labels for readability
+  scale_x_discrete(guide = guide_axis(angle = 45)) +
+  # Theme for better visuals
+  theme_minimal()
+
+```
+
+
+
+```{r}
+
+# Create the Raincloud Plot
+ggplot(deaths_long, aes(x = factor(Date), y = deaths, fill = seat_position, color = seat_position)) +
+  # Half-violin plots (Raincloud effect)
+  geom_violin(alpha = 0.4, scale = "width", position = position_dodge(width = 0.8), trim = FALSE, side = "right") +
+  # Boxplot for summary statistics (placed inside violins)
+  geom_boxplot(width = 0.1, position = position_dodge(width = 0.8), outlier.shape = NA, alpha = 0.8) +
+  # Jittered raw data points
+  geom_jitter(position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.8), alpha = 0.6) +
+  # Titles and labels
+  labs(title = "Raincloud Plot of Seat Deaths Over Time (Separated Groups)",
+       x = "Date",
+       y = "Number of Deaths",
+       fill = "Seat Position",
+       color = "Seat Position") +
+  # Rotate x-axis labels for readability
+  scale_x_discrete(guide = guide_axis(angle = 45)) +
+  # Theme for better visuals
+  theme_minimal()
+
+
+```
+
