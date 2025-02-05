@@ -48,8 +48,7 @@ nrow(Seatbelts)
 deaths_all<- as.data.frame(Seatbelts)
 deaths_all$Year <- rep(1969:1984, each = 12)
 deaths_all$Month <- rep(1:12, times = 16)
-deaths_all$Date <- factor(paste(sprintf("%02d", deaths_all$Month), deaths_all$Year, sep = "-"),
-                                levels = unique(paste(sprintf("%02d", deaths_all$Month), deaths_all$Year, sep = "-")))
+deaths_all$Date <- as.Date(paste(deaths_all$Year, deaths_all$Month, "01", sep = "-"), format = "%Y-%m-%d")
 deaths<- select(deaths_all,Date,drivers,front,rear)
 
 ```
@@ -91,26 +90,87 @@ ggplot(deaths_long, aes(x = Date, y = deaths, fill = seat_position, color = seat
 
 
 ```{r}
-
-# Create the Raincloud Plot
-ggplot(deaths_long, aes(x = factor(Date), y = deaths, fill = seat_position, color = seat_position)) +
-  # Half-violin plots (Raincloud effect)
-  geom_violin(alpha = 0.4, scale = "width", position = position_dodge(width = 0.8), trim = FALSE, side = "right") +
-  # Boxplot for summary statistics (placed inside violins)
-  geom_boxplot(width = 0.1, position = position_dodge(width = 0.8), outlier.shape = NA, alpha = 0.8) +
-  # Jittered raw data points
-  geom_jitter(position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.8), alpha = 0.6) +
-  # Titles and labels
-  labs(title = "Raincloud Plot of Seat Deaths Over Time (Separated Groups)",
-       x = "Date",
-       y = "Number of Deaths",
-       fill = "Seat Position",
-       color = "Seat Position") +
-  # Rotate x-axis labels for readability
-  scale_x_discrete(guide = guide_axis(angle = 45)) +
-  # Theme for better visuals
-  theme_minimal()
+# Plot erstellen: Überlappende Dichte-Kurven
+ggplot(deaths_long, aes(x = as.numeric(as.factor(Date)), y = deaths, fill = seat_position)) +
+  geom_density(stat = "identity", alpha = 0.4, size = 0.2) +  # Gefüllte Density-Kurven mit Transparenz
+  scale_x_continuous(breaks = seq(1, length(unique(deaths_long$Date)), by = 12),  # Jährliche Labels
+                     labels = unique(deaths_long$Year)) +
+  labs(title = "Dichteverteilung der Todesfälle nach Sitzposition",
+       x = "Jahr",
+       y = "Anzahl der Todesfälle",
+       fill = "Sitzposition") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 
+```
+
+```{r}
+ggplot(deaths_long, aes(x = Date, y = deaths, fill = seat_position)) +
+  geom_density(stat = "identity", alpha = 0.4, linewidth = 0.2) +  # Fix: Use `linewidth` instead of `size`
+  scale_x_date(date_labels = "%Y", date_breaks = "1 year") +  # Show only years
+  labs(title = "Dichteverteilung der Todesfälle nach Sitzposition",
+       x = "Jahr",
+       y = "Anzahl der Todesfälle",
+       fill = "Sitzposition") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+```
+
+
+
+
+
+```{r}
+# Check the structure of the dataframe
+str(deaths_long$Date)
+
+# Also check the class directly
+class(deaths_long$Date)
+
+# Count how many NA values are in the Date column
+sum(is.na(deaths_long$Date))
+
+# View some values in the Date column
+head(deaths_long$Date, 20)
+tail(deaths_long$Date, 20)
+
+# Check unique values
+unique(deaths_long$Date)
+
+head(deaths_long$Date, 20)   # Show the first 20 entries
+tail(deaths_long$Date, 20)   # Show the last 20 entries
+
+unique(deaths_long$Date)     # Show unique values
+
+
+```
+
+
+
+```{r}
+chooseCRANmirror(zoo)
+install.packages(zoo)
+library(zoo)
+
+# Konvertiere yearmon in Date mit dem ersten Tag des Monats
+deaths_all$Date <- as.Date(as.yearmon(paste(deaths_all$Year, deaths_all$Month), format = "%Y %m"))
+
+# Prüfe das Format
+str(deaths_all$Date)  # Sollte jetzt "Date" sein
+
+# ggplot mit richtiger Zeitachse
+ggplot(deaths_long, aes(x = Date, y = deaths, color = seat_position, fill = seat_position)) +
+  geom_smooth(se = FALSE, span = 0.2, method = "loess", linewidth = 1.2) +  
+  scale_x_date(date_breaks = "2 years", date_labels = "%m-%Y") +  # Korrekte Monats-Jahr-Achse
+  labs(title = "Glättete Entwicklung der Todesfälle nach Sitzposition",
+       x = "Jahr-Monat",
+       y = "Anzahl der Todesfälle",
+       fill = "Sitzposition",
+       color = "Sitzposition") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
 

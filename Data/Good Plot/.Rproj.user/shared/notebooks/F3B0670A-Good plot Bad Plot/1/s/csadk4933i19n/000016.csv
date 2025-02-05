@@ -3,7 +3,6 @@
 "0","deaths_all<- as.data.frame(Seatbelts)"
 "0","deaths_all$Year <- rep(1969:1984, each = 12)"
 "0","deaths_all$Month <- rep(1:12, times = 16)"
-"0","deaths_all$Date <- factor(paste(sprintf(""%02d"", deaths_all$Month), deaths_all$Year, sep = ""-""),"
-"0","                                levels = unique(paste(sprintf(""%02d"", deaths_all$Month), deaths_all$Year, sep = ""-"")))"
+"0","deaths_all$Date <- as.Date(paste(deaths_all$Year, deaths_all$Month, ""01"", sep = ""-""), format = ""%Y-%m-%d"")"
 "0","deaths<- select(deaths_all,Date,drivers,front,rear)"
 "0",""

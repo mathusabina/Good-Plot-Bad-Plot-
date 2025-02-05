@@ -1,0 +1,34 @@
+"0",""
+"0","# Create the Raincloud Plot"
+"0","ggplot(deaths_long, aes(x = Date, y = deaths, fill = seat_position, color = seat_position)) +"
+"0","  # Violin plot for distribution"
+"0","  geom_violin(alpha = 0.4, position = position_dodge(0.8)) +"
+"0","  # Boxplot inside violin for summary statistics"
+"0","  geom_boxplot(width = 0.2, position = position_dodge(0.8), outlier.shape = NA) +"
+"0","  # Jittered points to show individual data points"
+"0","  geom_jitter(position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.8), alpha = 0.6) +"
+"0","  # Titles and labels"
+"0","  labs(title = ""Raincloud Plot of Front vs Rear Seat Deaths Over Time"","
+"0","       x = ""Date"","
+"0","       y = ""Number of Deaths"","
+"0","       fill = ""Seat Position"","
+"0","       color = ""Seat Position"") +"
+"0","  # Rotate x-axis labels for readability"
+"0","  scale_x_discrete(guide = guide_axis(angle = 45)) +"
+"0","  # Theme for better visuals"
+"0","  theme_minimal()"
+"1","[1m[33mError[39m in `mapped_discrete()`:[22m
+[33m![39m Can't convert `x` <date> to <double>.
+Backtrace:
+[90m  1. [39m[1mbase[22m (local) `<fn>`(x)
+[90m  2. [39mggplot2:::print.ggplot(x)
+[90m  4. [39mggplot2:::ggplot_build.ggplot(x)
+[90m  5. [39mlayout$map_position(data)
+[90m  6. [39mggplot2 (local) map_position(..., self = self)
+     ...
+[90m 12. [39m[1mbase[22m::lapply(...)
+[90m 13. [39mggplot2 (local) FUN(X[[i]], ...)
+[90m 14. [39mscales[[i]][[method]](data[[var]][scale_index[[i]]])
+[90m 15. [39mggplot2 (local) map(..., self = self)
+[90m 16. [39m[1m[94mggplot2:::mapped_discrete([39m[22mx[1m[94m)[39m[22m
+"
