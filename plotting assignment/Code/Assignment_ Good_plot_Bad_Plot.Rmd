@@ -12,6 +12,9 @@ output: html_document
 ```{r}
 
 #Install packages 
+
+options(repos = c(CRAN = "https://cran.rstudio.com"))
+
 install.packages("ggplot2") 
 install.packages("tidyr")    
 install.packages("dplyr")    
@@ -31,7 +34,7 @@ library(patchwork)
 
 ## Dataset
 
-The dataset was choosen form the package "datasets". It describes road casualties in Great Britain between 1969-1984.
+The dataset was chosen from the package "datasets". It describes road casualties in Great Britain between 1969 and 1984.
 
 ```{r}
 
@@ -45,7 +48,7 @@ nrow(Seatbelts)
 
 ```
 
-The columns "drivers", "fornt" and "rear" describe the amount of people killed or seriously injured while sitting in these positions. The amount of rows represent the monthly data from January 1969 to December 1984. On 31 January 1983 the compulsory wearing of seat belts was introduced. The change in casualities will be visualized withe the following plots. 
+The columns "drivers", "front," and "rear" describe the number of people killed or seriously injured while sitting in these positions. The number of rows represents the monthly data from January 1969 to December 1984. On 31 January 1983, the compulsory wearing of seat belts was introduced. The change in casualties will be visualized with the following plots.
 
 ## Good plot
 
@@ -95,7 +98,7 @@ ggplot(deaths_long, aes(x = Date, y = deaths, fill = seat_position)) +
 
 ```
 
-Description: 
+Description: This plot visualizes the trend in road casualties over time, particularly before and after the 1983 seat belt law. A stacked density plot is used so that both the total number of casualties and the distribution across different seating positions (drivers, front, and rear passengers) can be seen in one view. The long-format data and color differentiation help distinguish patterns, while the time-based x-axis makes it easier to track trends over the years. These elements contribute to a clearer representation of changes in fatalities.
 
 ### Plot 2: Short version
 
@@ -132,6 +135,8 @@ theme(
     panel.grid.minor = element_line(color = "grey70", linewidth = 0.3))
 
 ```
+
+Description: This version of the plot zooms in on the period from 1976 to 1985, focusing on the time around the introduction of the seat belt law in 1983. By narrowing the timeframe, the visualization provides a clearer view of how the number of casualties changed before and after the policy was enforced. The stacked density plot continues to show both the total number of fatalities and their distribution among drivers, front passengers, and rear passengers, making it easier to identify potential trends and shifts in casualty rates.
 
 ## Bad Plot
 
@@ -186,3 +191,5 @@ combined_plot <- ggplot() +
 combined_plot
 
 ```
+
+Description: This plot combines multiple visualization techniques: bar chart, boxplot, and scatter plot. This results in a high level of visual clutter. The overlapping elements make it difficult to focus on a clear trend. Additionally, the data is simplified by categorizing it into only two periods, "Pre-1983" and "Post-1983," which removes the ability to observe gradual changes over time. Another point of confusion is that the timeline is reversed, with "Post-1983" appearing before "Pre-1983" on the x-axis. This can mislead the viewer into initially thinking that the change in law led to an increase in casualties rather than a decrease. These factors together make it harder to interpret the data at a glance.
