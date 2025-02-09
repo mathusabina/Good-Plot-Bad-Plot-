@@ -10,7 +10,7 @@ https://cran.rstudio.com/bin/windows/Rtools/
 "2","versuche URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/ggplot2_3.5.1.zip'
 "
 "2","Content type 'application/zip'"
-"2"," length 5021945 bytes (4.8 MB)
+"2"," length 5022455 bytes (4.8 MB)
 "
 "2","downloaded 4.8 MB
 
@@ -21,7 +21,7 @@ https://cran.rstudio.com/bin/windows/Rtools/
 "
 "1",""
 "1","Die heruntergeladenen Binärpakete sind in 
-	C:\Users\mathu\AppData\Local\Temp\Rtmps7GhtO\downloaded_packages"
+	C:\Users\mathu\AppData\Local\Temp\RtmpwXkIvQ\downloaded_packages"
 "1",""
 "1","
 "
@@ -36,51 +36,18 @@ https://cran.rstudio.com/bin/windows/Rtools/
 "2","versuche URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/tidyr_1.3.1.zip'
 "
 "2","Content type 'application/zip'"
-"2"," length 1273351 bytes (1.2 MB)
+"2"," length 1273755 bytes (1.2 MB)
 "
 "2","downloaded 1.2 MB
 
 "
 "1","Paket ‘tidyr’ erfolgreich ausgepackt und MD5 Summen abgeglichen
 "
-"1","Warning in "
-"1",""
-"1","install.packages"
-"1",""
-"1"," :
-  "
-"1",""
-"1","kann alte Installation von Paket ‘tidyr’ nicht entfernen"
-"1",""
-"1","
-"
-"1","Warning in "
-"1",""
-"1","install.packages"
-"1",""
-"1"," :
-  "
-"1",""
-"1","Problem C:\Users\mathu\AppData\Local\R\win-library\4.4\00LOCK\tidyr\libs\x64\tidyr.dll nach C:\Users\mathu\AppData\Local\R\win-library\4.4\tidyr\libs\x64\tidyr.dll zu kopieren: Permission denied"
-"1",""
-"1","
-"
-"1","Warning in "
-"1",""
-"1","install.packages"
-"1",""
-"1"," :
-  "
-"1",""
-"1","‘tidyr’ wiederhergestellt"
-"1",""
-"1","
-"
 "1","
 "
 "1",""
 "1","Die heruntergeladenen Binärpakete sind in 
-	C:\Users\mathu\AppData\Local\Temp\Rtmps7GhtO\downloaded_packages"
+	C:\Users\mathu\AppData\Local\Temp\RtmpwXkIvQ\downloaded_packages"
 "1",""
 "1","
 "
@@ -95,18 +62,77 @@ https://cran.rstudio.com/bin/windows/Rtools/
 "2","versuche URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/dplyr_1.1.4.zip'
 "
 "2","Content type 'application/zip'"
-"2"," length 1589631 bytes (1.5 MB)
+"2"," length 1589834 bytes (1.5 MB)
 "
 "2","downloaded 1.5 MB
 
 "
 "1","Paket ‘dplyr’ erfolgreich ausgepackt und MD5 Summen abgeglichen
 "
+"1","Warning in "
+"1",""
+"1","install.packages"
+"1",""
+"1"," :
+  "
+"1",""
+"1","kann alte Installation von Paket ‘dplyr’ nicht entfernen"
+"1",""
+"1","
+"
+"1","Warning in "
+"1",""
+"1","install.packages"
+"1",""
+"1"," :
+  "
+"1",""
+"1","Problem C:\Users\mathu\AppData\Local\R\win-library\4.4\00LOCK\dplyr\libs\x64\dplyr.dll nach C:\Users\mathu\AppData\Local\R\win-library\4.4\dplyr\libs\x64\dplyr.dll zu kopieren: Permission denied"
+"1",""
+"1","
+"
+"1","Warning in "
+"1",""
+"1","install.packages"
+"1",""
+"1"," :
+  "
+"1",""
+"1","‘dplyr’ wiederhergestellt"
+"1",""
+"1","
+"
 "1","
 "
 "1",""
 "1","Die heruntergeladenen Binärpakete sind in 
-	C:\Users\mathu\AppData\Local\Temp\Rtmps7GhtO\downloaded_packages"
+	C:\Users\mathu\AppData\Local\Temp\RtmpwXkIvQ\downloaded_packages"
+"1",""
+"1","
+"
+"0","install.packages(""ggsci"")"
+"2","WARNING: Rtools is required to build R packages but is not currently installed. Please download and install the appropriate version of Rtools before proceeding:
+
+https://cran.rstudio.com/bin/windows/Rtools/
+"
+"2","Installiere Paket nach ‘C:/Users/mathu/AppData/Local/R/win-library/4.4’
+(da ‘lib’ nicht spezifiziert)
+"
+"2","versuche URL 'https://cran.rstudio.com/bin/windows/contrib/4.4/ggsci_3.2.0.zip'
+"
+"2","Content type 'application/zip'"
+"2"," length 2403627 bytes (2.3 MB)
+"
+"2","downloaded 2.3 MB
+
+"
+"1","Paket ‘ggsci’ erfolgreich ausgepackt und MD5 Summen abgeglichen
+"
+"1","
+"
+"1",""
+"1","Die heruntergeladenen Binärpakete sind in 
+	C:\Users\mathu\AppData\Local\Temp\RtmpwXkIvQ\downloaded_packages"
 "1",""
 "1","
 "
@@ -131,3 +157,5 @@ Attache Paket: ‘dplyr’
     intersect, setdiff, setequal, union
 
 "
+"0","library(ggsci)"
+"2","Warnung: Paket ‘ggsci’ wurde unter R Version 4.4.2 erstellt"
