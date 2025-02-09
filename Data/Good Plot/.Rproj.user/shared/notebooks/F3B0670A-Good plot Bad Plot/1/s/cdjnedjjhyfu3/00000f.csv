@@ -1,4 +1,6 @@
 "0",""
+"0","#change date to 1976-1985 to zoom in on the time of change 1983"
+"0",""
 "0","deaths_long2 <- deaths %>%"
 "0","  filter(Date >= as.Date(""1976-01-01"") & Date <= as.Date(""1985-12-31"")) %>%"
 "0","  pivot_longer(cols = c(drivers,front, rear), "

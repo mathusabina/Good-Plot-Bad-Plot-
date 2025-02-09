@@ -24,6 +24,5 @@
 "1"," 192"
 "1","
 "
-"0","# The columns ""drivers"", ""fornt"" and ""rear"" describe the amount of people killed or seriously injured while sitting in these positions."
-"0","# The amount of rows represent the monthly data from January 1969 to December 1984. "
+"0","# The columns ""drivers"", ""fornt"" and ""rear"" describe the amount of people killed or seriously injured while sitting in these positions. The amount of rows represent the monthly data from January 1969 to December 1984. On 31 January 1983 the compulsory wearing of seat belts was introduced. The change in casualities will be visualized withe the following plots. "
 "0",""

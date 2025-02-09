@@ -1,0 +1,8 @@
+"0","# Create a period column for grouping"
+"0","deaths_all <- deaths_all %>%"
+"0","  mutate(period = ifelse(Year < 1983, ""Pre-1983"", ""Post-1983""))"
+"0",""
+"0","# Create a new variable ""casualties"" by summing drivers, front, and rear casualties"
+"0","deaths_all <- deaths_all %>%"
+"0","  mutate(casualties = drivers + front + rear)"
+"0",""
