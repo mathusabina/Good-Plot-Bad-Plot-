@@ -43,9 +43,9 @@ View(Seatbelts)
 colnames(Seatbelts)
 nrow(Seatbelts)
 
-# The columns "drivers", "fornt" and "rear" describe the amount of people killed or seriously injured while sitting in these positions. The amount of rows represent the monthly data from January 1969 to December 1984. On 31 January 1983 the compulsory wearing of seat belts was introduced. The change in casualities will be visualized withe the following plots. 
-
 ```
+
+The columns "drivers", "fornt" and "rear" describe the amount of people killed or seriously injured while sitting in these positions. The amount of rows represent the monthly data from January 1969 to December 1984. On 31 January 1983 the compulsory wearing of seat belts was introduced. The change in casualities will be visualized withe the following plots. 
 
 ## Good plot
 
@@ -94,6 +94,8 @@ ggplot(deaths_long, aes(x = Date, y = deaths, fill = seat_position)) +
     panel.grid.minor = element_line(color = "grey70", linewidth = 0.3))
 
 ```
+
+Description: 
 
 ### Plot 2: Short version
 
